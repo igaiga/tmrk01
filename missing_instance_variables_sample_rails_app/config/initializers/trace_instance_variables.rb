@@ -3,13 +3,17 @@ def tracer(target_instance_variable_name)
     # ソース取得
     begin
       line = File.open(tp.path, "r"){|f| f.readlines[tp.lineno - 1] }
-    rescue Errno::ENOENT => e
+    rescue Errno::ENOENT => _e
     end
     next unless line
+    # erb対応
+    if match_data = line.match(/\A\s*<%=*(.*)%>\s*\z/)
+      line = match_data.captures.first
+    end
     # AST取得
     begin
       node = RubyVM::AbstractSyntaxTree.parse(line).children.last
-    rescue Exception => e # 乱暴
+    rescue SyntaxError => _e
       next
     end
     # インスタンス変数への代入かを調べる
