@@ -1,5 +1,10 @@
-tmrk01
-TODO: 講演資料を貼る
+Tama Ruby会議01
+
+「白魔術師への道」 サンプルコード
+
+## 講演資料
+
+- https://speakerdeck.com/igaiga/road-to-white-mages
 
 ## gems
 
